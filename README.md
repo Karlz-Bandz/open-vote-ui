@@ -1,27 +1,65 @@
-# OpenVoteUi
+# OpenVote UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+Angular frontend for the OpenVote election and voting application.
+
+## Tech Stack
+
+* Angular 18
+* TypeScript
+* Jasmine / Karma
+* HTML / SCSS
+
+## Features
+
+* User authentication
+* Election browsing
+* Voting interface
+* Election results
+* Role-based UI for users and administrators
+* Integration with the OpenVote Spring Boot REST API
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Install dependencies:
 
-## Code scaffolding
+```bash
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Start the development server:
+
+```bash
+ng serve
+```
+
+Open `http://localhost:4200/` in your browser.
+
+The application automatically reloads when source files are changed.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+To build the project for production:
+
+```bash
+ng build
+```
+
+Build artifacts are stored in the `dist/` directory.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run the unit tests with:
 
-## Running end-to-end tests
+```bash
+ng test
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Tests are executed using Jasmine and Karma.
 
-## Further help
+## Backend
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This application is designed to communicate with the OpenVote backend built with Spring Boot.
+
+Backend repository:
+
+`https://github.com/Karlz-Bandz/open-vote`
