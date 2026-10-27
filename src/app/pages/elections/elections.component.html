@@ -1,0 +1,17 @@
+<h2>{{ title }}</h2>
+
+<button routerLink="/election/new">Create new election</button>
+
+@for (election of elections; track election.id) {
+<div>
+    <h3>{{ election.title }}</h3>
+    <button [routerLink]="['/election', election.id]">
+        View
+    </button>
+
+    <button (click)="deleteElectionById(election.id)">
+        Delete
+    </button>
+</div>
+}
+

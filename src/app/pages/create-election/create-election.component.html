@@ -1,0 +1,29 @@
+<h2>Add new election</h2>
+<form (ngSubmit)="addNewElection()">
+    <div>
+        <label for="title">Election title</label>
+
+        <input id="title" name="title" type="text" [(ngModel)]="newElection.title" required />
+    </div>
+
+    <div>
+        <label for="status">Status</label>
+
+        <select id="status" name="status" [(ngModel)]="newElection.status">
+            <option value="OPEN">OPEN</option>
+            <option value="CLOSED">CLOSED</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="startDate">Start date</label>
+        <input id="startDate" name="startDate" type="datetime-local" [(ngModel)]="newElection.startDate" required />
+    </div>
+
+    <div>
+        <label for="endDate">End date</label>
+        <input id="endDate" name="endDate" type="datetime-local" [(ngModel)]="newElection.endDate" required />
+    </div>
+
+    <button type="submit">Add election</button>
+</form>
