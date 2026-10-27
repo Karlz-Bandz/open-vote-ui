@@ -19,7 +19,9 @@ export class ElectionDetailsComponent implements OnInit {
   election?: Election;
 
   isEditingStatus = false;
+  isEditingTitle = false;
   editedStatus = '';
+  editedTitle = '';
 
   constructor(
     private router: ActivatedRoute,
@@ -31,6 +33,15 @@ export class ElectionDetailsComponent implements OnInit {
     this.election = this.electionService.getElectionById(id);
   }
 
+  startEditTitle() {
+    if (!this.election) {
+      return;
+    }
+
+    this.editedTitle = this.election.title;
+    this.isEditingTitle = true;
+  }
+
   startEditStatus() {
     if (!this.election) {
       return;
@@ -40,8 +51,21 @@ export class ElectionDetailsComponent implements OnInit {
     this.isEditingStatus = true;
   }
 
+  cancelEditTitle() {
+    this.isEditingTitle = false;
+  }
+
   cancelEditStatus() {
     this.isEditingStatus = false;
+  }
+
+  editTitle() {
+    if (!this.election) {
+      return;
+    }
+
+    this.election.title = this.editedTitle;
+    this.isEditingTitle = false;
   }
 
   editStatus() {

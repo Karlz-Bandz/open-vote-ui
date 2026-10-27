@@ -1,5 +1,19 @@
 @if (election) {
-<h2>{{ election.title }}</h2>
+
+<p>
+    <strong>Title:</strong>
+    
+    @if (isEditingTitle) {
+    <input type="text" [(ngModel)]="editedTitle" required />
+
+    <button (click)="editTitle()">Save</button>
+    <button (click)="cancelEditTitle()">Cancel</button>
+    } @else {
+    {{ election.title }}
+
+    <button (click)="startEditTitle()">Edit</button>
+    }
+</p>
 
 <p>
     <strong>Status:</strong>
