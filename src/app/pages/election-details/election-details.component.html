@@ -1,22 +1,36 @@
 @if (election) {
-  <h2>{{ election.title }}</h2>
+<h2>{{ election.title }}</h2>
 
-  <p>
+<p>
     <strong>Status:</strong>
-    {{ election.status }}
-  </p>
 
-  <p>
+    @if (isEditingStatus) {
+    <select [(ngModel)]="editedStatus">
+        <option value="OPENED">OPENED</option>
+        <option value="FINISHED">FINISHED</option>
+    </select>
+
+    <button (click)="editStatus()">Save</button>
+    <button (click)="cancelEditStatus()">Cancel</button>
+
+    } @else {
+    {{ election.status }}
+
+    <button (click)="startEditStatus()">Edit</button>
+    }
+</p>
+
+<p>
     <strong>Start date:</strong>
     {{ election.startDate }}
-  </p>
+</p>
 
-  <p>
+<p>
     <strong>End date:</strong>
     {{ election.endDate }}
-  </p>
+</p>
 } @else {
-  <p>Election not found.</p>
+<p>Election not found.</p>
 }
 
 <button routerLink="/elections">Back to elections</button>
