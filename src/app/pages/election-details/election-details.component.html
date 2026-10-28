@@ -6,12 +6,12 @@
     @if (isEditingTitle) {
     <input type="text" [(ngModel)]="editedTitle" required />
 
-    <button (click)="editTitle()">Save</button>
+    <button (click)="saveEditTitle()">Save</button>
     <button (click)="cancelEditTitle()">Cancel</button>
     } @else {
     {{ election.title }}
 
-    <button (click)="startEditTitle()">Edit</button>
+    <button (click)="editTitle()">Edit</button>
     }
 </p>
 
@@ -24,25 +24,45 @@
         <option value="FINISHED">FINISHED</option>
     </select>
 
-    <button (click)="editStatus()">Save</button>
+    <button (click)="saveEditStatus()">Save</button>
     <button (click)="cancelEditStatus()">Cancel</button>
-
     } @else {
     {{ election.status }}
 
-    <button (click)="startEditStatus()">Edit</button>
+    <button (click)="editStatus()">Edit</button>
     }
 </p>
 
 <p>
     <strong>Start date:</strong>
+
+    @if (isEditingStartDate) {
+    <input type="datetime-local" [(ngModel)]="editedStartDate" required />
+
+    <button (click)="saveEditStartDate()">Save</button>
+    <button (click)="cancelEditStartDate()">Cancel</button>
+    } @else {
     {{ election.startDate }}
+
+    <button (click)="editStartDate()">Edit</button>
+    }
 </p>
 
 <p>
     <strong>End date:</strong>
+
+    @if (isEditingEndDate) {
+    <input type="datetime-local" [(ngModel)]="editedEndDate" required />
+
+    <button (click)="saveEditEndDate()">Save</button>
+    <button (click)="cancelEditEndDate()">Cancel</button>
+    } @else {
     {{ election.endDate }}
+
+    <button (click)="editEndDate()">Edit</button>
+    }
 </p>
+
 } @else {
 <p>Election not found.</p>
 }

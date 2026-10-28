@@ -20,8 +20,12 @@ export class ElectionDetailsComponent implements OnInit {
 
   isEditingStatus = false;
   isEditingTitle = false;
+  isEditingStartDate = false;
+  isEditingEndDate = false;
   editedStatus = '';
   editedTitle = '';
+  editedStartDate = '';
+  editedEndDate = '';
 
   constructor(
     private router: ActivatedRoute,
@@ -33,7 +37,25 @@ export class ElectionDetailsComponent implements OnInit {
     this.election = this.electionService.getElectionById(id);
   }
 
-  startEditTitle() {
+  editEndDate() {
+    if (!this.election) {
+      return;
+    }
+
+    this.editedEndDate = this.election.endDate;
+    this.isEditingEndDate = true;
+  }
+
+  editStartDate() {
+    if (!this.election) {
+      return;
+    }
+
+    this.editedStartDate = this.election.startDate;
+    this.isEditingStartDate = true;
+  }
+
+  editTitle() {
     if (!this.election) {
       return;
     }
@@ -42,13 +64,21 @@ export class ElectionDetailsComponent implements OnInit {
     this.isEditingTitle = true;
   }
 
-  startEditStatus() {
+  editStatus() {
     if (!this.election) {
       return;
     }
 
     this.editedStatus = this.election.status;
     this.isEditingStatus = true;
+  }
+
+  cancelEditEndDate() {
+    this.isEditingEndDate = false;
+  }
+
+  cancelEditStartDate() {
+    this.isEditingStartDate = false;
   }
 
   cancelEditTitle() {
@@ -59,8 +89,51 @@ export class ElectionDetailsComponent implements OnInit {
     this.isEditingStatus = false;
   }
 
-  editTitle() {
+  saveEditEndDate() {
     if (!this.election) {
+      return;
+    }
+
+    if (!this.editedEndDate) {
+      alert('End date cannot be empty!');
+      return;
+    }
+
+    if (new Date(this.editedEndDate) < new Date(this.election.startDate)) {
+      alert('Start date must be earlier than end date!')
+      return;
+    }
+
+    this.election.endDate = this.editedEndDate;
+    this.isEditingEndDate = false;
+  }
+
+  saveEditStartDate() {
+    if (!this.election) {
+      return;
+    }
+
+    if (!this.editedStartDate) {
+      alert('Start date cannot be empty!');
+      return;
+    }
+
+    if (new Date(this.editedStartDate) > new Date(this.election.endDate)) {
+      alert('Start date must be earlier than end date!')
+      return;
+    }
+
+    this.election.startDate = this.editedStartDate;
+    this.isEditingStartDate = false;
+  }
+
+  saveEditTitle() {
+    if (!this.election) {
+      return;
+    }
+
+    if (!this.editedTitle) {
+      alert('Title cannot be empty!');
       return;
     }
 
@@ -68,7 +141,7 @@ export class ElectionDetailsComponent implements OnInit {
     this.isEditingTitle = false;
   }
 
-  editStatus() {
+  saveEditStatus() {
     if (!this.election) {
       return;
     }

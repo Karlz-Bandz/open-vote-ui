@@ -26,6 +26,20 @@ export class CreateElectionComponent {
   };
 
   addNewElection() {
+
+    if (!this.newElection.title.trim()) {
+      return;
+    }
+
+    if (!this.newElection.startDate || !this.newElection.endDate) {
+      return;
+    }
+
+    if (new Date(this.newElection.startDate) > new Date(this.newElection.endDate)) {
+      alert('Start date must be earlier than end date!')
+      return;
+    }
+
     const election: Election = {
       id: this.electionService.getNextId(),
       title: this.newElection.title.trim(),
@@ -33,10 +47,6 @@ export class CreateElectionComponent {
       startDate: this.newElection.startDate,
       endDate: this.newElection.endDate
     };
-
-    if (!election.title) {
-      return;
-    }
 
     this.electionService.addNewElection(election);
    
